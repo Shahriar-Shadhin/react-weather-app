@@ -11,7 +11,7 @@ function App() {
   const [weather, setWeather] = useState('');
 
   const search = (evt) => {
-    if (evt.key === "Enter") {
+    
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
         .then(res => res.json())
         .then(result => {
@@ -19,7 +19,7 @@ function App() {
           setQuery('');
           console.log(result);
         });
-    }
+    
   }
 
   const dateBuilder = (d) => {
@@ -43,8 +43,11 @@ function App() {
             placeholder="Search.."
             onChange={e => setQuery(e.target.value)}
             value={query}
-            onKeyPress={search}
+            
           />
+          <div>
+            <button className="btn btn-outline-light btn-lg" onClick={search}>Search</button>
+          </div>
         </div>
         {(typeof weather.main != "undefined") ? (
           <div>
